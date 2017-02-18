@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html manifest="USMC.manifest">
+<head>
+	<title>PFT Calculator</title>
+	<meta name="viewport"
+		content="user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
+	
+	<link rel="stylesheet" href="jquery.mobile.min.css" />
+	<link rel="stylesheet" href="USMC.css" />
+	
+	<script src="jquery-1.12.4.min.js"></script>
+	<script src="jquery.mobile.min.js"></script>
+	<script src="USMC.js"></script>
+</head>
+<body>
+<!-------------------------------HOME SCREEN------------------------------>
+<div id="Home" data-role="page">
+
+	<div data-role="header" data-theme="b">
+		<h1>PFT Calculator</h1>
+		
+	</div>
+	
+	<div role="main" class="ui-content">
+		
+		<a href="#NewPFT" class="ui-btn ui-icon-star ui-btn-icon-right">Log New PFT</a>
+		<a href="#PFTLog" class="ui-btn ui-icon-grid ui-btn-icon-right">View Previous Scores</a>
+	</div>
+</div>
+
+
+<!------------------------------NEW PFT SCREEN------------------------------>
+
+<div id="NewPFT" data-role="page">
+		<div data-role="header">
+			<h1>Log New PFT</h1>
+			<a id="GoHome" href="#Home" data-icon="home" class="ui-btn-right">Home</a>
+		</div>
+		
+		<div role="main" class="ui-content">
+			<div data-role="fieldcontain">
+				<label for="PullUps">Pull Ups:</label>
+				<input type="number" id="PullUps"  />
+
+				<label for="PushUps">Push Ups:</label>
+				<input type="number" id="PushUps"   />
+
+				<label for="Crunches">Crunches:</label>
+				<input type="number" id="Crunches"  />
+				
+				<label for="RunTimeMinutes">Run Time Minutes:</label>
+				<input type="number" id="RunTimeMinutes" />
+				
+				<label for="RunTimeSeconds">Run Time Seconds:</label>
+				<input type="number" id="RunTimeSeconds" />
+
+				<label for="Date">Date:</label>
+				<input type="date" id="Date" />
+			</div>
+			 <div data-inline="true">
+				<a href="#" id="clear" data-role="button" data-inline="true">Clear</a>
+				<a href="#PFTLog" id = "save" data-role="button" data-inline="true">Save</a>
+			</div>
+		</div>
+	</div>
+<!------------------------------PFT LOG SCREEN------------------------------>
+<div id="PFTLog" data-role="page">
+	<div data-role="header" data-position="fixed">
+		<h1> PFT Log </h1>
+		<a id="GoHome" href="#Home" data-icon="home" class="ui-btn-right">Home</a>
+		<a id="GoNewPFT" href="#NewPFT" data-icon="star" class="ui-btn-left">New PFT</a>
+	</div>
+	
+	<div data-role="main" class="ui-content">
+		<ul id="Log" data-role="listview">
+		</ul>
+	</div>
+		
+	<div id="entry">  
+		<li id="score_entry">
+			<span class="text"></span>
+		</li>  
+
+		<div id="delete_entry" class="delete">Delete</div>
+	
+	</div>
+	<div class="ui-content">
+<label for="testinput">Tes</label>
+				<textarea rows="4" id="testinput"></textarea>
+	</div>	
+</div>
+
+</body>
+</html>

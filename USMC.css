@@ -1,0 +1,56 @@
+#cancel {
+	display: none;
+}
+
+#newitem {
+	display: none;
+	height: 90px;
+}
+
+#text {
+	font-size: 8pt;
+}
+
+div.delete {
+	display: none;
+	font-size: 8pt;
+	float: right;
+	border: 1px solid #900;
+	border-radius: 5px;
+	padding: 5px;
+	color: white;
+	background: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.18, rgb(173,0,0)),
+		color-stop(0.57, rgb(250,120,120))
+	);
+}
+
+div {
+	color: gold;
+	background-color: blue;
+}
+
+h1 {
+	margin-left: 10px;
+	color: gold;
+	background-color:red;
+}
+
+h3 {
+	color: gold;
+	background-color:red;
+}
+
+span{
+	display: block;
+	width:90%;
+	word-wrap:break-all;
+	white-space:normal;
+}
+
+#score_entry {
+	display: none;
+}
