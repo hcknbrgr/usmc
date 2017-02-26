@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html manifest="USMC.manifest">
+<head>
+	<title>PFT Calculator</title>
+	<meta name="viewport"
+		content="user-scalable=no,initial-scale=1.0,maximum-scale=1.0" />
+	
+	<link rel="stylesheet" href="jquery.mobile.min.css" />
+	<link rel="stylesheet" href="USMC.css" />
+	
+	<script src="jquery-1.12.4.min.js"></script>
+	<script src="jquery.mobile.min.js"></script>
+	<script src="USMC.js"></script>
+</head>
+
+<body>
+
+<div id="main" data-role="page">
+	
+<!------------------------------NEW PFT SCREEN------------------------------>
+
+<div id="content_NewPFT" class="content">
+	<div data-role="header" data-position="fixed">
+		<h1> New PFT </h1>
+		<a id="clear" href="#" data-role="button" class="ui-btn-right">Clear</a>
+		<a id="save" href="#PFTLog" data-icon="star" class="ui-btn-left">Save</a>
+	</div>
+	<br>
+		<div class="ui-content">
+			<div data-role="fieldcontain">
+			
+				<div data-inline="true">
+					<label for="Gender">Gender:</label>
+					<select id="Gender" data-role="slider">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+				
+				<label for="AgeGroup">Age Group:</label>
+				<select id="AgeGroup">
+					<option value="17-20">17-20</option>
+					<option value="21-25">21-25</option>
+					<option value="26-30">26-30</option>
+					<option value="31-35">31-35</option>
+					<option value="36-40">36-40</option>
+					<option value="41-45">41-45</option>
+					<option value="46-50">46-50</option>
+					<option value="51+">51+</option>
+				</select>
+				
+				<label for="PullUps">Pull Ups:</label>
+				<input type="number" id="PullUps"  />
+
+				<label for="PushUps">Push Ups:</label>
+				<input type="number" id="PushUps"   />
+
+				<label for="Crunches">Crunches:</label>
+				<input type="number" id="Crunches"  />
+				
+				<label for="RunTimeMinutes">Run Time Minutes:</label>
+				<input type="number" id="RunTimeMinutes" />
+				
+				<label for="RunTimeSeconds">Run Time Seconds:</label>
+				<input type="number" id="RunTimeSeconds" />
+
+				<label for="Date">Date:</label>
+				<input type="date" id="Date" />
+			</div>
+		</div>
+</div>
+<!------------------------------PFT LOG SCREEN------------------------------>
+<div id="content_PFTLog" class="content">
+<div data-role="header" data-position="fixed">
+	<h1> PFT Log </h1>
+		<a id="GoNewPFT" href="#" data-icon="star" class="ui-btn-left">New PFT</a>
+	</div>
+	<br><br>
+	<div  class="ui-content">
+		<ul id="Log" data-role="listview">
+		</ul>
+	</div>
+		
+	<div id="entry">  
+		<li id="score_entry">
+			<span class="text"></span>
+		</li>  
+
+		<div id="delete_entry" class="delete">Delete</div>
+	
+	</div>
+
+</div>
+<!--------------------------NEW WEIGHT SCREEN---------------------------->
+    <div id="content_NewWeight" class="content">
+	<div data-role="header" data-position="fixed">
+	<h1> Weigh-in </h1>
+			<a id="clearWeight" href="#" data-role="button" class="ui-btn-right">Clear</a>
+		<a id="saveWeight" href="#WeightLog" data-icon="star" class="ui-btn-left">Save</a>
+	</div><br><br>
+      
+	  		<div class="ui-content">
+			<div data-role="fieldcontain">
+			
+				<div data-inline="true">
+					<label for="WeightGender">Gender:</label>
+					<select id="WeightGender" data-role="slider">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+								
+				<label for="Height">Height in Inches (56-82):</label>
+				<input type="number" id="Height"   />
+
+				<label for="Weight">Weight:</label>
+				<input type="number" id="Weight"  />
+			
+				<label for="WeightDate">Date:</label>
+				<input type="date" id="WeightDate" />
+			</div>
+		</div>
+	  
+	  
+	  
+    </div>
+<!--------------------------WEIGHT LOG SCREEN---------------------------->
+    <div id="content_WeightLog" class="content">
+	<div data-role="header" data-position="fixed">
+	<h1> Weight Log </h1>
+		<a id="GoNewWeight" href="#" data-icon="star" class="ui-btn-left">New Weigh-in</a>
+	</div>
+	<br><br>
+	<div  class="ui-content">
+		<ul id="WLog" data-role="listview">
+		</ul>
+	</div>
+		
+	<div id="weightEntry">  
+		<li id="weight_entry">
+			<span class="text"></span>
+		</li>  
+
+		<div id="weight_delete_entry" class="delete">Delete</div>
+	
+	</div>
+    </div>
+<!---------------------------FOOTER-------------------------------------->
+
+<div id="footer" data-role="footer" class="ui-bar" data-position="fixed">
+  <div data-role="navbar" class="ui-navbar">
+    <ul class="ui-grid-b">
+      <li class="ui-block-b"><a id="tab_NewPFT" href="javascript:void(0)">NewPFT</a></li>
+      <li class="ui-block-c"><a id="tab_PFTLog"  href="javascript:void(0)">PFTLog</a></li>
+      <li class="ui-block-d"><a id="tab_NewWeight"  href="javascript:void(0)">NewWeight</a></li>
+      <li class="ui-block-e"><a id="tab_WeightLog" href="javascript:void(0)">WeightLog</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+</body>
+</html>
