@@ -11,6 +11,10 @@
 	font-size: 8pt;
 }
 
+#GoNewWeight {
+	font-size: 6pt;
+}
+
 #main, #footer {
   padding-top: 150px;
   padding: 0px;

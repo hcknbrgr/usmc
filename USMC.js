@@ -811,9 +811,9 @@ $(function(){
   $("#saveWeight").tap(handletab('WeightLog'))
   $("#GoNewPFT").tap(handletab('NewPFT'))
   $("#GoNewWeight").tap(handletab('NewWeight'))
-  $("#tab_NewPFT").tap(handletab('NewPFT'))
+  $("#tab_NewPFT").tap(handletab('NewPFT')).tap()
   $("#tab_PFTLog").tap(handletab('PFTLog'))
-  $("#tab_NewWeight").tap(handletab('NewWeight')).tap()
+  $("#tab_NewWeight").tap(handletab('NewWeight'))
   $("#tab_WeightLog").tap(handletab('WeightLog'))
 })
 
