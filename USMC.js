@@ -67,8 +67,14 @@ $(document).ready(function(){
 		var RunMin = $('#RunTimeMinutes').val();
 		var RunSec = $('#RunTimeSeconds').val();
 		var PFTDateRan = $('#Date').val();
-		var elevation = $('#Elevation').val();
 		
+		var elevation = false;
+		
+		if ($('#Elevation').is(':checked'))
+		{
+			elevation = true;
+		}
+					
 		var Gender = $('#Gender').val();
 		var AgeGroup = $('#AgeGroup').val();
 		
@@ -79,7 +85,7 @@ $(document).ready(function(){
 	
 		PFTRecord.push(recorddata);
 		var PFTData = CalculateScore(recorddata);
-	
+		
 		additem(recorddata, PFTData);		
 		saveitems(PFTRecord);
 
