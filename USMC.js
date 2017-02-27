@@ -1,6 +1,7 @@
 /*
 	Daniel Hackenberger	
-	
+	Final Project
+	This app is a Physical Fitness Test calculator for the Marine Corps
 */
 
 document.ontouchmove = function(e){ e.preventDefault(); }
@@ -66,6 +67,7 @@ $(document).ready(function(){
 		var RunMin = $('#RunTimeMinutes').val();
 		var RunSec = $('#RunTimeSeconds').val();
 		var PFTDateRan = $('#Date').val();
+		var elevation = $('#Elevation').val();
 		
 		var Gender = $('#Gender').val();
 		var AgeGroup = $('#AgeGroup').val();
@@ -73,7 +75,7 @@ $(document).ready(function(){
 		clearPFT();
 		
 		var id = new Date().getTime();
-		var recorddata = {id:id, Pull:Pull,Push:Push,Crunch:Crunch,RunMin:RunMin,RunSec:RunSec,PFTDateRan:PFTDateRan, Gender:Gender, AgeGroup:AgeGroup };
+		var recorddata = {id:id, elevation:elevation, Pull:Pull,Push:Push,Crunch:Crunch,RunMin:RunMin,RunSec:RunSec,PFTDateRan:PFTDateRan, Gender:Gender, AgeGroup:AgeGroup };
 	
 		PFTRecord.push(recorddata);
 		var PFTData = CalculateScore(recorddata);
@@ -129,6 +131,7 @@ function initialadditem(itemdata, PFTData1) {
 	item.attr({id:itemdata.id});
 	
 	var displayPFT = "Date: \n" + JSON.stringify(itemdata.PFTDateRan) + 
+		" Elevation Adjustment: " + JSON.stringify(itemdata.elevation) +
 		" Gender: " + itemdata.Gender + " Age Group: " + itemdata.AgeGroup + 
 	    " Pull Ups: " + itemdata.Pull + " Score: \n" + PFTData1.PullScore +
 		" Push Ups: " + itemdata.Push + " Score: \n" + PFTData1.PushScore +
@@ -165,6 +168,7 @@ function additem(itemdata, PFTData1) {
 	item.attr({id:itemdata.id});
 	
 	var displayPFT = "Date: " + JSON.stringify(itemdata.PFTDateRan) +
+		" Elevation Adjustment: " + JSON.stringify(itemdata.elevation) +	
 		" Gender: " + itemdata.Gender + " Age Group: " + itemdata.AgeGroup + 
 	    " Pull Ups: " + itemdata.Pull + " Score: " + PFTData1.PullScore +
 		" Push Ups: " + itemdata.Push + " Score: " + PFTData1.PushScore +
@@ -291,7 +295,7 @@ function getCrunchIndex(amount, min, max, length)
 
 
 
-function getRunIndex(runMin, runSec, minMin, minSec, length)
+function getRunIndex(runMin, runSec, minMin, minSec, length, elevation)
 /*
 	index = 0 
 	subtract mininimum runmin from the runners minutes
@@ -308,6 +312,16 @@ function getRunIndex(runMin, runSec, minMin, minSec, length)
 	if(runMin == 0) {return index;}
 	else
 	{
+		if(elevation)
+		{
+			minMin = minMin+1;
+			minSec = minSec+30;
+			if(minSec == 60)
+			{
+				minMin = minMin +1;
+				minSec = 0;
+			}
+		}
 		runMin = runMin - minMin;
 		runSec = runSec - minSec;
 		if (runSec < 0) 
@@ -344,7 +358,7 @@ function getRunIndex(runMin, runSec, minMin, minSec, length)
 
 function CalculateScore(Results)
 {	//Requires Score Array. Calculates the scores, returns object of PFT scores.
-	//results = {id, Pull, Push, Crunch, RunMin, RunSec, PFTDateRan, Gender, AgeGroup};
+	//results = {id, elevation, Pull, Push, Crunch, RunMin, RunSec, PFTDateRan, Gender, AgeGroup};
 	var PullScore = 0;
 	var PushScore = 0;
 	var CrunchScore = 0;
@@ -374,7 +388,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,70,104,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,0, RunTable.length)];
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,0, RunTable.length, Results.elevation)];
 					
 					break;
 				
@@ -399,7 +413,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,70,109,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,0,RunTable.length)];
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,0,RunTable.length, Results.elevation)];
 				
 					break;
 					
@@ -450,7 +464,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,70,115,CrunchTable.length)];
 					
 					//calculate run
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,0,RunTable.length)];
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,0,RunTable.length, Results.elevation)];
 					
 					break;
 				case "36-40":
@@ -475,7 +489,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,70,109,CrunchTable.length)];
 					
 					//calculate run
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,0,RunTable.length)];
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,0,RunTable.length, Results.elevation)];
 				
 					break;
 					
@@ -503,7 +517,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,65,104,CrunchTable.length)];
 					
 					//calculate run
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,30,RunTable.length)];
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 18,30,RunTable.length, Results.elevation)];
 								
 					break;
 					
@@ -529,7 +543,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,50,99,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 19,0, RunTable.length)];				
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 19,0, RunTable.length, Results.elevation)];				
 					break;
 				
 				case "51+":
@@ -554,7 +568,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,40,99,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 19,30, RunTable.length)];				
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 19,30, RunTable.length, Results.elevation)];				
 					break;
 			}
 			
@@ -582,7 +596,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,50,100,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length)];
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length, Results.elevation)];
 					
 					
 					break;
@@ -608,7 +622,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,55,105,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length)];
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length, Results.elevation)];
 					break;
 					
 				case "26-30": 
@@ -633,7 +647,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,60,110,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length)];				
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length, Results.elevation)];				
 				
 					break;
 				
@@ -659,7 +673,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,60,105,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length)];
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length, Results.elevation)];
 					break;
 				
 				case "36-40":
@@ -684,7 +698,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,60,105,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length)];				
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,0, RunTable.length, Results.elevation)];				
 					break;
 					break;
 				case "41-45":
@@ -709,7 +723,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,55,100,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,30, RunTable.length)];				
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 21,30, RunTable.length, Results.elevation)];				
 					break;
 					
 				case "46-50":
@@ -734,7 +748,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,50,100,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 22,0, RunTable.length)];				
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 22,0, RunTable.length, Results.elevation)];				
 					break;
 				
 				case "51+":
@@ -759,7 +773,7 @@ function CalculateScore(Results)
 					CrunchScore = CrunchTable[getCrunchIndex(Results.Crunch,40,100,CrunchTable.length)];
 					
 					//CALCULATE RUN Score
-					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 22,30, RunTable.length)];				
+					RunScore = RunTable[getRunIndex(Results.RunMin, Results.RunSec, 22,30, RunTable.length, Results.elevation)];				
 					break;
 					}
 			break;
