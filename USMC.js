@@ -1,8 +1,11 @@
 /*
 	Daniel Hackenberger	
-	Final Project
-	This app is a Physical Fitness Test calculator for the Marine Corps
-*/
+
+	Male tables for BF
+	Female tables for BF
+	Tables for acceptable BF range
+
+	*/
 
 document.ontouchmove = function(e){ e.preventDefault(); }
 var PFTRecord = []; //Initialize Record Log
@@ -45,13 +48,21 @@ $(document).ready(function(){
 		var weight = $('#Weight').val();
 		var WeighinDate = $('#WeightDate').val();
 		var WGender = $('#WeightGender').val();
+		var abdomen = $('#Abdomen').val();
+		var neck = $('#Neck').val();
+		var hip = $('#Hip').val();
 		
 		clearWeight();
+		
 		
 		var id = new Date().getTime();
 		var minWeight = getWeightMin(height);
 		var maxWeight = getWeightMax(WGender, height);
-		var weighinData = {id:id, height:height, weight:weight,WeighinDate:WeighinDate,WGender:WGender,minWeight:minWeight,maxWeight:maxWeight };
+		var CValue = abdomen - neck;
+
+		var bodyFat = getBodyFat(CValue, height, WGender);
+		
+		var weighinData = {id:id, height:height, weight:weight,WeighinDate:WeighinDate,WGender:WGender,minWeight:minWeight,maxWeight:maxWeight, bodyFat:bodyFat, abdomen:abdomen, neck:neck, hip:hip};
 		
 		weightRecord.push(weighinData);
 		addWeighIn(weighinData);
@@ -92,6 +103,118 @@ $(document).ready(function(){
 	});
 });
 
+function getBodyFat(Circumfrence, Height, Gender)
+{
+	
+	switch( Gender ){
+		case "Male":
+		var maleMatrix = ([
+			[9 , 9, 0, 0, 0, 0, 0, 0],
+			[11,11,10,10,10,10, 9, 9]
+		]);
+		Height = (Height - 60)*2;
+		Circumfrence = (Circumfrence - 13.5)*2;
+		var fat = maleMatrix[Circumfrence][Height];
+		
+		/*
+			switch ( Circumfrence ){ 
+			
+				case 13.5:
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];					
+				break;				
+				case "14":
+					var table = [11,11,10,10,10,10,9,9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14.5":
+					var table = [12,12,12,11,11,11,11,10,10,10,10,9,9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "15":
+					var table = [13,13,13,13,12,12,12,12,11,11,11,11,10,10,10,10,10,9,9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+				case "14":
+					var table = [9, 9];
+					Height = (Height - 60)*2;
+					var fat = table[Height];
+				break;
+			
+			}*/
+		
+		break;
+		
+		
+		
+		case "Female":
+		
+		break;
+	}
+	
+	return fat;
+	
+}
+
 function getWeightMin(height)
 {
 	var Weight = [85,88,91,94,97,100,104,107,110,114,117,121,125,128,132,136,140,144,148,152,156,160,164,168,173,177,182];	
@@ -129,6 +252,9 @@ function clearWeight() {
 	//Clears the new weight log entries and reinitializes the Date as today's date
 	$('#Height').val('');
 	$('#Weight').val('');
+	$('#Abdomen').val('');
+	$('#Neck').val('');
+	$('#Hip').val('');
 	document.getElementById("Date").valueAsDate = new Date();
 }
 function initialadditem(itemdata, PFTData1) {
@@ -205,6 +331,8 @@ function additem(itemdata, PFTData1) {
 
 
 function addWeighIn(weightData) {
+//var weighinData = {id:id, height:height, weight:weight,WeighinDate:WeighinDate,WGender:WGender,minWeight:minWeight,maxWeight:maxWeight, 
+// bodyFat:bodyFat, abdomen:abdomen, neck:neck, hip:hip };
 
 	var item = $('#weight_entry').clone(); 
 	item.attr({id:weightData.id});
@@ -212,7 +340,10 @@ function addWeighIn(weightData) {
 	var displayWeighin = "Date: " + JSON.stringify(weightData.WeighinDate) +
 		" Gender: " + weightData.WGender + 
 	    " Height: " + weightData.height + " Weight: " + weightData.weight +
-		" Min Weight: " + weightData.minWeight + " Max Weight: " + weightData.maxWeight;
+		" Min Weight: " + weightData.minWeight + " Max Weight: " + weightData.maxWeight +
+		" Abdomen / Waist: " + weightData.abdomen + " Neck: " + weightData.neck +
+		" Hip: " + weightData.hip + " Body Fat: " + weightData.bodyFat;
+		
 		
 	item.find('span.text').text(displayWeighin);	//this might be a problem?
 	var delbutton = $('#weight_delete_entry').clone().show();
@@ -241,7 +372,9 @@ function initialaddWeighIn(weightData) {
 	var displayWeighin = "Date: " + JSON.stringify(weightData.WeighinDate) +
 		" Gender: " + weightData.WGender + 
 	    " Height: " + weightData.height + " Weight: " + weightData.weight +
-		" Min Weight: " + weightData.minWeight + " Max Weight: " + weightData.maxWeight;
+		" Min Weight: " + weightData.minWeight + " Max Weight: " + weightData.maxWeight +
+		" Abdomen / Waist: " + weightData.abdomen + " Neck: " + weightData.neck +
+		" Hip: " + weightData.hip + " Body Fat: " + weightData.bodyFat;
 		
 	item.find('span.text').text(displayWeighin);	//this might be a problem?
 	var delbutton = $('#weight_delete_entry').clone().show();
@@ -830,10 +963,10 @@ $(function(){
   $("#save").tap(handletab('PFTLog'))
   $("#saveWeight").tap(handletab('WeightLog'))
   $("#GoNewPFT").tap(handletab('NewPFT'))
-  $("#GoNewWeight").tap(handletab('NewWeight'))
-  $("#tab_NewPFT").tap(handletab('NewPFT')).tap()
+  $("#GoBodyFat").tap(handletab('BodyFat'))
+  $("#tab_NewPFT").tap(handletab('NewPFT'))
   $("#tab_PFTLog").tap(handletab('PFTLog'))
-  $("#tab_NewWeight").tap(handletab('NewWeight'))
+  $("#tab_BodyFat").tap(handletab('BodyFat')).tap()
   $("#tab_WeightLog").tap(handletab('WeightLog'))
 })
 

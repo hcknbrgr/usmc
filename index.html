@@ -94,8 +94,8 @@
 	</div>
 
 </div>
-<!--------------------------NEW WEIGHT SCREEN---------------------------->
-    <div id="content_NewWeight" class="content">
+<!--------------------------NEW BODY FAT SCREEN---------------------------->
+    <div id="content_BodyFat" class="content">
 	<div data-role="header" data-position="fixed">
 	<h1> Weigh-in </h1>
 			<a id="clearWeight" href="#" data-role="button" class="ui-btn-right">Clear</a>
@@ -113,11 +113,20 @@
 					</select>
 				</div>
 								
-				<label for="Height">Height in Inches (56-82):</label>
-				<input type="number" id="Height"   />
+				<label for="Height">Height in Inches:</label>
+				<input type="number" step=0.5 id="Height"   />
 
+				<label for="Abdomen">Abdomen/Waist</label>
+				<input type="number" step=0.5 id="Abdomen"   />
+				
+				<label for="Neck">Neck:</label>
+				<input type="number" step=0.5 id="Neck"   />
+
+				<label for="Hip">Hip(females only):</label>
+				<input type="number" step=0.5 id="Hip"   />
+				
 				<label for="Weight">Weight:</label>
-				<input type="number" id="Weight"  />
+				<input type="number" step=0.5 	id="Weight"  />
 			
 				<label for="WeightDate">Date:</label>
 				<input type="date" id="WeightDate" />
@@ -131,7 +140,7 @@
     <div id="content_WeightLog" class="content">
 	<div data-role="header" data-position="fixed">
 	<h1> Weight Log </h1>
-		<a id="GoNewWeight" href="#" data-icon="star" class="ui-btn-right">New Weight</a>
+		<a id="GoBodyFat" href="#" data-icon="star" class="ui-btn-right">New Body Fat</a>
 	</div>
 	<br><br>
 	<div  class="ui-content">
@@ -155,7 +164,7 @@
     <ul class="ui-grid-b">
       <li class="ui-block-b"><a id="tab_NewPFT" href="javascript:void(0)">NewPFT</a></li>
       <li class="ui-block-c"><a id="tab_PFTLog"  href="javascript:void(0)">PFTLog</a></li>
-      <li class="ui-block-d"><a id="tab_NewWeight"  href="javascript:void(0)">NewWeight</a></li>
+      <li class="ui-block-d"><a id="tab_BodyFat"  href="javascript:void(0)">BodyFat</a></li>
       <li class="ui-block-e"><a id="tab_WeightLog" href="javascript:void(0)">WeightLog</a></li>
     </ul>
   </div>
