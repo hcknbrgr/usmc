@@ -1033,9 +1033,9 @@ $(function(){
   $("#saveWeight").tap(handletab('WeightLog'))
   $("#GoNewPFT").tap(handletab('NewPFT'))
   $("#GoBodyFat").tap(handletab('BodyFat'))
-  $("#tab_NewPFT").tap(handletab('NewPFT'))
+  $("#tab_NewPFT").tap(handletab('NewPFT')).tap()
   $("#tab_PFTLog").tap(handletab('PFTLog'))
-  $("#tab_BodyFat").tap(handletab('BodyFat')).tap()
+  $("#tab_BodyFat").tap(handletab('BodyFat'))
   $("#tab_WeightLog").tap(handletab('WeightLog'))
 })
 
