@@ -24,6 +24,12 @@
 		<h1> New PFT </h1>
 		<a id="clear" href="#" data-role="button" class="ui-btn-right">Clear</a>
 		<a id="save" href="#PFTLog" data-icon="star" class="ui-btn-left">Save</a>
+		<div data-role="navbar">
+			<ul>
+				<li class="ui-block-b"><a href="javascript:void(0)">NewPFT</a></li>
+				<li class="ui-block-c"><a id="HeaderNewCFT" href="javascript:void(0)">New CFT</a></li>
+			</ul>
+		</div>
 	</div>
 	<br>
 		<div class="ui-content">
@@ -72,13 +78,80 @@
 			</div>
 		</div>
 </div>
+<!-------------------------NEW CFT SCREEN------------------->
+<div id="content_NewCFT" class="content">
+	<div data-role="header" data-position="fixed">
+		<h1> New CFT </h1>
+		<a id="CFTclear" href="#" data-role="button" class="ui-btn-right">Clear</a>
+		<a id="CFTsave" href="#CFTLog" data-icon="star" class="ui-btn-left">Save</a>
+		<div data-role="navbar">
+			<ul>
+				<li class="ui-block-b"><a id="HeaderNewPFT" href="javascript:void(0)">New PFT</a></li>
+				<li class="ui-block-c"><a href="javascript:void(0)">NewCFT</a></li>
+			</ul>
+		</div>
+	</div>
+	<br>
+		<div class="ui-content">
+			<div data-role="fieldcontain">
+			
+				<div data-inline="true">
+					<label for="CFTGender">Gender:</label>
+					<select id="CFTGender" data-role="slider">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+				
+				<label for="CFTAgeGroup">Age Group:</label>
+				<select id="CFTAgeGroup">
+					<option value="17-20">17-20</option>
+					<option value="21-25">21-25</option>
+					<option value="26-30">26-30</option>
+					<option value="31-35">31-35</option>
+					<option value="36-40">36-40</option>
+					<option value="41-45">41-45</option>
+					<option value="46-50">46-50</option>
+					<option value="51+">51+</option>
+				</select>
+
+				<label for="MTCMin">Movement to Contact Minutes:</label>
+				<input type="number" id="MTCMin" />
+				
+				<label for="MTCSec">Movement to Contact Seconds:</label>
+				<input type="number" id="MTCSec" />
+				
+				<label for="ACL">Ammo Can Lifts:</label>
+				<input type="number" id="ACL"  />
+
+				<label for="MUFMin">Maneuver Under Fire Minutes:</label>
+				<input type="number" id="MUFMin"   />
+
+				<label for="MUFSec">Maneuver Under Fire Seconds:</label>
+				<input type="number" id="MUFSec"  />
+				
+				
+				<label for="CFTDate">Date:</label>
+				<input type="date" id="CFTDate" />
+				
+				<label for="CFTElevation">Elevation Adjustment:</label>
+				<input type="checkbox" data-iconpos = "right" id="CFTElevation" />
+			</div>
+		</div>
+</div>
 <!------------------------------PFT LOG SCREEN------------------------------>
 <div id="content_PFTLog" class="content">
 <div data-role="header" data-position="fixed">
 	<h1> PFT Log </h1>
 		<a id="GoNewPFT" href="#" data-icon="star" class="ui-btn-right">New PFT</a>
-	</div>
-	<br><br>
+		<div data-role="navbar">
+			<ul>
+				<li class="ui-block-c"><a href="javascript:void(0)">PFT Log</a></li>
+				<li class="ui-block-b"><a id="HeaderCFTLog" href="javascript:void(0)">CFT Log</a></li>
+			</ul>
+		</div>
+</div>
+	<br><br><br><br>
 	<div  class="ui-content">
 		<ul id="Log" data-role="listview">
 		</ul>
@@ -90,6 +163,34 @@
 		</li>  
 
 		<div id="delete_entry" class="delete">Delete</div>
+	
+	</div>
+
+</div>
+<!------------------------------CFT LOG SCREEN------------------------------>
+<div id="content_CFTLog" class="content">
+<div data-role="header" data-position="fixed">
+	<h1> CFT Log </h1>
+		<a id="GoNewCFT" href="#" data-icon="star" class="ui-btn-right">New CFT</a>
+			<div data-role="navbar">
+			<ul>
+				<li class="ui-block-c"><a id="HeaderPFTLog" href="javascript:void(0)">PFT Log</a></li>
+				<li class="ui-block-b"><a  href="javascript:void(0)">CFT Log</a></li>
+			</ul>
+		</div>
+		</div>
+	<br><br><br><br>
+	<div  class="ui-content">
+		<ul id="CFTLog" data-role="listview">
+		</ul>
+	</div>
+		
+	<div id="CFTentry">  
+		<li id="CFTscore_entry">
+			<span class="text"></span>
+		</li>  
+
+		<div id="CFTdelete_entry" class="delete">Delete</div>
 	
 	</div>
 
@@ -164,10 +265,8 @@
     <ul class="ui-grid-b">
       <li class="ui-block-b"><a id="tab_NewPFT" href="javascript:void(0)">NewPFT</a></li>
       <li class="ui-block-c"><a id="tab_PFTLog"  href="javascript:void(0)">PFTLog</a></li>
-	  <li class="ui-block-d"><a id="tab_NewCFT" href="javascript:void(0)">NewCFT</a></li>
-	  <li class="ui-block-e"><a id="tab-CFTLog" href="javascript:void(0)">CFTLog</a></li>
-      <li class="ui-block-f"><a id="tab_BodyFat"  href="javascript:void(0)">BodyFat</a></li>
-      <li class="ui-block-g"><a id="tab_WeightLog" href="javascript:void(0)">WeightLog</a></li>
+      <li class="ui-block-d"><a id="tab_BodyFat"  href="javascript:void(0)">BodyFat</a></li>
+      <li class="ui-block-e"><a id="tab_WeightLog" href="javascript:void(0)">WeightLog</a></li>
     </ul>
   </div>
 </div>
